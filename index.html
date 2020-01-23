@@ -6,7 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Train Schedule</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-database.js"></script>
 </head>
+
 <body>
 <div class="container">
     <div class="jumbotron">
@@ -15,10 +20,11 @@
       </div>
 
 <div class="row">
-    <div class="col-md-12">
-     <div class="card-header p-3 mb-2 bg-warning text-dark">Current Train Schedule</div>
+    <div class="col-md-12 border border-dark">
+        <br>
+     <div class="card-header  p-3 mb-2 bg-secondary text-white">Current Train Schedule</div>
         <div class="card-body">
-            <table class="table table-sm table-hover" id='trainSchedle-table'>
+            <table class="table table-sm table-hover" id='trainSchedule-table'>
                 <thead>
                 <tr>
                     <th scope="col">Train Name</th>
@@ -41,8 +47,8 @@
                 <!-- Add train form -->
                 <form>
                     <div class="form-group">
-                        <label for="train-name-input">Train Name</label>
-                        <input class="form-control" id="train-name-input" type="text">
+                        <label for="trainName-input">Train Name</label>
+                        <input class="form-control" id="trainName-input" type="text">
                     </div>
                     <div class="form-group">
                         <label for="destination-input">Destination</label>
@@ -56,7 +62,7 @@
                         <label for="freq-input">Frequency in Minutes </label>
                         <input class="form-control" id="freq-input" type="text">
                     </div>
-                    <button class="btn btn-primary float-right" id="addTrain-btn">Submit</button>
+                    <button class="btn btn-primary float-right" id="addTrain-btn" type="submit">Submit</button>
                     </form>
 
             </div>
@@ -67,7 +73,7 @@
 
 
 
-
+<script src="javascript/trainLogic.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
