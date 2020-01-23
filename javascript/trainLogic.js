@@ -20,20 +20,20 @@ var firebaseConfig = {
 
   $("#addTrain-btn").on("click", function() {
     event.preventDefault();
-    console.log("cilck");
+    // console.log("cilck");
 
     //use jquery to get the value (.val()) info from form on html
     var trainName = $("#trainName-input").val().trim();
     var destination = $("#destination-input").val().trim();
-    var firstTrainName = $("#firstTrain-input").val().trim();
+    var firstTrainTime = $("#firstTrain-input").val().trim();
     var frequency= $("#freq-input").val().trim();
 
-    console.log(trainName,destination,firstTrainName,frequency);
+    console.log(trainName,destination,firstTrainTime,frequency);
 
     var trainForm= {
       train: trainName,
       destination: destination,
-      firstTrainName: firstTrainName,
+      firstTrainTime: firstTrainTime,
       frequency: frequency
 };
 
@@ -59,13 +59,27 @@ database.ref().on("child_added", function(childSnapshot) {
   //variable to hold our child info 
   var trainName = childSnapshot.val().train;
   var destination =childSnapshot.val().destination;
-  var firstTrainName = childSnapshot.val().firstTrainName;
+  var firstTrainTime = childSnapshot.val().firstTrainTime;
   var frequency= childSnapshot.val().frequency;
  
-  console.log(trainName, destination, firstTrainName, frequency);
+  console.log(trainName, destination, firstTrainTime, frequency);
+
+//moment.js here
+//make the firstTraintime here per moment.js syntax 
+// var trainUnix= moment().unix(firstTrainTime);
+// console.log(trainUnix);
+
+var currentTime= moment().format("HH:mm");
+console.log(currentTime);
+//calculate the arrival data, departure data, frequency 
+
+
+
+
+//display on HTML using jquery by creating rows 
+
 });
-  //moment.js here
-  //display on HTML using jquery 
+
   // error handler 
 
 
