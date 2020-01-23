@@ -35,22 +35,35 @@ var firebaseConfig = {
       destination: destination,
       firstTrainName: firstTrainName,
       frequency: frequency
-
-      database.ref().push( 
-        trainForm
-        );
 };
 
-// need to store the intital data from firebase database (the ref() and push () )
-database.ref().push( 
-trainForm
-);
-  });
 
-  
-   
-  //clear form after push
-  //firebase wacther (snapshot) and snapshot.val()
+// need to store the intital data from firebase database (the ref() and push () )
+database.ref().push( trainForm);
+
+//clear form after push
+$("#trainName-input").val(" ");
+$("#destination-input").val(" ");
+$("#firstTrain-input").val(" ");
+$("#freq-input").val(" ");
+
+}); //closure for click function 
+
+ 
+
+  //firebase watcher(snapshot) and snapshot.val() to add a train
+  // (which is a child so needed childSnpshot) into our Current Train Schedule 
+database.ref().on("child_added", function(childSnapshot) {
+  console.log(childSnapshot.val());
+
+  //variable to hold our child info 
+  var trainName = childSnapshot.val().train;
+  var destination =childSnapshot.val().destination;
+  var firstTrainName = childSnapshot.val().firstTrainName;
+  var frequency= childSnapshot.val().frequency;
+ 
+  console.log(trainName, destination, firstTrainName, frequency);
+});
   //moment.js here
   //display on HTML using jquery 
   // error handler 
