@@ -75,7 +75,7 @@ var currentTime= moment().format("HH:mm"); //military time
 console.log("current time:" + currentTime);
 
 
-//calculate the arrival data, departure data, frequency 
+
 
 // //difference in times 
 var differenceTime= moment().diff(moment(firstTimeConverted), "minutes");
@@ -89,9 +89,20 @@ console.log(tRemainder);
  var minTilTrain = frequency - tRemainder;
  console.log("min til train: " + minTilTrain);
 
+//calculate the arrival data
+ var arrivalTime= moment().diff(moment(differenceTime), "HH:mm");
+console.log(arrivalTime);
+
+//calculate departure data (minutes)
+var departTime= moment().diff(moment(frequency), "minutes");
+console.log(departTime);
 
 //display on HTML using jquery by creating rows 
+var trainRow= $("<tr>").append(
+  $("<td>").text(trainName), $("<td>").text(destination),$("<td>").text(frequency));
 
+//append to table  of Curren Train Schedule
+$("#trainSchedule-table").append(trainRow);
 });
 
   // error handler 
