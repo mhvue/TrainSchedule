@@ -64,16 +64,30 @@ database.ref().on("child_added", function(childSnapshot) {
  
   console.log(trainName, destination, firstTrainTime, frequency);
 
-//moment.js here
-//make the firstTraintime here per moment.js syntax 
-// var trainUnix= moment().unix(firstTrainTime);
-// console.log(trainUnix);
 
-var currentTime= moment().format("HH:mm");
-console.log(currentTime);
+var firstTrainTime=0;
+//moment.js here
+//make the firstTraintime  (pushed back 1 year to make sure it comes before current time)
+var firstTimeConverted = moment(firstTrainTime, "HH:mm").subtract(1, "years");
+console.log(firstTimeConverted);
+
+var currentTime= moment().format("HH:mm"); //military time
+console.log("current time:" + currentTime);
+
+
 //calculate the arrival data, departure data, frequency 
 
+// //difference in times 
+var differenceTime= moment().diff(moment(firstTimeConverted), "minutes");
+console.log(differenceTime);
 
+// Time apart (remainder)
+var tRemainder = differenceTime % frequency;
+console.log(tRemainder);
+
+ // Minute Until Train
+ var minTilTrain = frequency - tRemainder;
+ console.log("min til train: " + minTilTrain);
 
 
 //display on HTML using jquery by creating rows 
