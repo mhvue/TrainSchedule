@@ -76,7 +76,7 @@ console.log("current time:" + currentTime);
 
 // //difference in times 
 var differenceTime= moment().diff(moment(firstTimeConverted), "minutes");
-console.log(differenceTime);
+console.log("diff time:" + differenceTime);
 
 // Time apart (remainder)
 var tRemainder = differenceTime % frequency;
@@ -88,7 +88,7 @@ console.log(tRemainder);
 
 //calculate the arrival data
  var arrivalTime= moment().add(minTilTrain, "minutes");
- var arrivalData= moment(arrivalTime).format("HH:mm");
+ var arrivalData= moment(arrivalTime).format("hh:mm");
 console.log(arrivalTime);
 console.log(arrivalData);
 
@@ -98,7 +98,7 @@ console.log(arrivalData);
 
 //display on HTML using jquery by creating rows 
 var trainRow= $("<tr>").append(
-  $("<td>").text(trainName), $("<td>").text(destination),$("<td>").text(frequency), $("<td>").text(arrivalTime));
+  $("<td>").text(trainName), $("<td>").text(destination),$("<td>").text(frequency), $("<td>").text(arrivalData));
 
 //append to table  of Curren Train Schedule
 $("#trainSchedule-table").append(trainRow);
