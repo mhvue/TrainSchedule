@@ -14,13 +14,15 @@ td {
 
 }
 
+label{
+    color: white;
+}
+
 p, tr{
     color: goldenrod;
 }
 
-label {
-    color: white;
-}
+
 
 .card-header {
     text-align: center;
@@ -37,4 +39,6 @@ h4 {
 
 .curTrainTitle {
     font-weight: bold;
+    font-size: 20px;
 }
+
