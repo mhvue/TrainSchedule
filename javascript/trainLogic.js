@@ -88,22 +88,31 @@ console.log(tRemainder);
 
 //calculate the arrival data
  var arrivalTime= moment().add(minTilTrain, "minutes");
- var arrivalData= moment(arrivalTime).format("hh:mm");
+ var arrivalData= moment(arrivalTime).format("hh:mm A");
 console.log(arrivalTime);
 console.log(arrivalData);
 
-//calculate departure data (minutes away)
+//calculate minutes away
 var minAway= moment(arrivalTime).diff(moment(), "minutes");
 console.log("Min away: " + minAway);
 
 //display on HTML using jquery by creating rows 
 var trainRow= $("<tr>").append(
-  $("<td>").text(trainName), $("<td>").text(destination),$("<td>").text(frequency), $("<td>").text(arrivalData), $("<td>").text(minAway));
+  $("<td>").text(trainName), 
+  $("<td>").text(destination),
+  $("<td>").text(frequency), 
+  $("<td>").text(arrivalData), 
+  $("<td>").text(minAway)
+  );
+
+
 
 //append to table  of Curren Train Schedule
 $("#trainSchedule-table").append(trainRow);
+//error handler 
+},function(errorObject) {
+  console.log("Errors handled: " + errorObject.code);
 });
 
-  // error handler 
 
 

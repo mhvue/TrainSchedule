@@ -1,0 +1,19 @@
+body {
+    background-image: url("../images/trainStation.jpg");
+    background-repeat: no-repeat;
+    background-size: 1800px;
+}
+
+td {
+    background-color: black;
+    color: goldenrod;
+}
+
+p, tr {
+    color: goldenrod;
+}
+
+.form-group {
+    color: white;
+}
+
