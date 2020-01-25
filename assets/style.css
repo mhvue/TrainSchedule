@@ -1,19 +1,40 @@
 body {
     background-image: url("../images/trainStation.jpg");
     background-repeat: no-repeat;
-    background-size: 1800px;
+    background-size: cover;
+}
+
+.text-center {
+    font-family: 'Abril Fatface', cursive;
 }
 
 td {
     background-color: black;
     color: goldenrod;
+
 }
 
-p, tr {
+p, tr{
     color: goldenrod;
 }
 
-.form-group {
+label {
     color: white;
 }
 
+.card-header {
+    text-align: center;
+}
+
+.jumbotron {
+    opacity: 0.5;
+}
+
+h4 {
+    font-style: italic;
+    font-size: 25px;
+}
+
+.curTrainTitle {
+    font-weight: bold;
+}
