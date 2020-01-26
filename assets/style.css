@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     background-image: url("../images/trainStation.jpg");
     background-repeat: no-repeat;
@@ -22,10 +26,12 @@ p, tr{
     color: goldenrod;
 }
 
-
-
 .card-header {
     text-align: center;
+}
+
+th {
+    font-size: 20px;
 }
 
 .jumbotron {
@@ -37,14 +43,14 @@ h4 {
     font-size: 25px;
 }
 
-.curTrainTitle {
+.curTrainTitle, .addTrainTitle{
     font-weight: bold;
     font-size: 20px;
 }
 
 .addTrainContainer {
     width: 100%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /*from w3 schools*/
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 20px rgba(0, 0, 0, 0.19); /*from w3 schools*/
     margin: 0 auto;
   }
 
