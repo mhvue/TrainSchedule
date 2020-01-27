@@ -106,7 +106,7 @@ $("<td>").text(minAway)
 );
 
 
-// Attempting to add remove btn...this is the  clicked function but unable to get td to remove 
+// Attempting to add remove btn...this is the  clicked function but unable to remove 
 // $(document.body).unbind().on("click", ".deleteTrain", function() {
 //   console.log("click");
 //   var testingBtn = $(this).attr("data-train");
