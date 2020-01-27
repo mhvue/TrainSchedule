@@ -54,4 +54,6 @@ h4 {
     margin: 0 auto;
   }
 
-
+  .deleteTrain:hover{
+      color: red;
+  }
