@@ -97,28 +97,28 @@ removeBtn.text("X");
 
 //display on HTML using jquery by creating rows 
 var trainRow= $("<tr>").attr("id", "trainInfo").append(
-// $("<td>").text(trainName).prepend(removeBtn), commented this out due to unable to add remove button to work
-$("<td>").text(trainName),
+$("<td>").text(trainName).prepend(removeBtn), //commented this out due to unable to add remove button to work
 $("<td>").text(destination),
 $("<td>").text(frequency), 
 $("<td>").text(arrivalData), 
 $("<td>").text(minAway)
 );
 
-
-// Attempting to add remove btn...this is the  clicked function but unable to remove 
-// $(document.body).unbind().on("click", ".deleteTrain", function() {
-//   console.log("click");
-//   var testingBtn = $(this).attr("data-train");
-//   console.log(testingBtn);
-//   $(".trainInfo" + testingBtn).remove();
-// });
-
 //append to table  of Curren Train Schedule
 $("#trainSchedule-table").append(trainRow);
 },function(errorObject) {
   console.log("Errors handled: " + errorObject.code);
 });
+
+// Attempting to add remove btn...this is the  clicked function but unable to remove 
+$(document.body).unbind().on("click", ".deleteTrain", function() {
+  console.log("click");
+  var testingBtn = $(this).attr("data-train");
+  console.log(testingBtn);
+ 
+  $("#trainInfo").remove();
+});
+
 
 
 
