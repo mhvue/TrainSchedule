@@ -32,16 +32,15 @@ var firebaseConfig = {
       destination: destination,
       firstTrainTime: firstTrainTime,
       frequency: frequency
-};
+  };
+    // need to store the intital data from firebase database 
+    database.ref().push( trainForm);
 
-// need to store the intital data from firebase database 
-database.ref().push( trainForm);
-
-//clear form after push
-$("#trainName-input").val(" ");
-$("#destination-input").val(" ");
-$("#firstTrain-input").val(" ");
-$("#freq-input").val(" ");
+    //clear form after push
+    $("#trainName-input").val(" ");
+    $("#destination-input").val(" ");
+    $("#firstTrain-input").val(" ");
+    $("#freq-input").val(" ");
 
 }); //closure for click function 
 
@@ -56,56 +55,52 @@ database.ref().on("child_added", function(childSnapshot) {
   var frequency= childSnapshot.val().frequency;
   console.log(trainName, destination, firstTrainTime, frequency);
 
-var firstTrainTime=0;
-//moment.js here
-//make the firstTraintime  (pushed back 1 year to make sure it comes before current time)
-var firstTimeConverted = moment(firstTrainTime, "HH:mm").subtract(1, "years");
-console.log(firstTimeConverted);
+  var firstTrainTime=0;
+  //moment.js here
+  //make the firstTraintime  (pushed back 1 year to make sure it comes before current time)
+  var firstTimeConverted = moment(firstTrainTime, "HH:mm").subtract(1, "years");
+  console.log(firstTimeConverted);
 
-var currentTime= moment().format("HH:mm"); 
-console.log("current time:" + currentTime);
+  var currentTime= moment().format("HH:mm"); 
+  console.log("current time:" + currentTime);
 
-// //difference in times 
-var differenceTime= moment().diff(moment(firstTimeConverted), "minutes");
-console.log("diff time:" + differenceTime);
+  // //difference in times 
+  var differenceTime= moment().diff(moment(firstTimeConverted), "minutes");
+  console.log("diff time:" + differenceTime);
 
-// Time apart (remainder)
-var tRemainder = differenceTime % frequency;
-console.log(tRemainder);
+  // Time apart (remainder)
+  var tRemainder = differenceTime % frequency;
+  console.log(tRemainder);
 
- // Minute Until Train
- var minTilTrain = frequency - tRemainder;
- console.log("min til train: " + minTilTrain);
+  // Minute Until Train
+  var minTilTrain = frequency - tRemainder;
+  console.log("min til train: " + minTilTrain);
 
-//calculate the arrival data
- var arrivalTime= moment().add(minTilTrain, "minutes"); //taking current time and adding freq to get when it'll arrive
- var arrivalData= moment(arrivalTime).format("hh:mm A"); //changing format 
-console.log(arrivalTime);
-console.log(arrivalData);
+  //calculate the arrival data
+  var arrivalTime= moment().add(minTilTrain, "minutes"); //taking current time and adding freq to get when it'll arrive
+  var arrivalData= moment(arrivalTime).format("hh:mm A"); //changing format 
+  console.log(arrivalTime);
+  console.log(arrivalData);
 
-//calculate minutes away
-var minAway= moment(arrivalTime).diff(moment(), "minutes");
-console.log("Min away: " + minAway);
+  //calculate minutes away
+  var minAway= moment(arrivalTime).diff(moment(), "minutes");
+  console.log("Min away: " + minAway);
 
-//creating the buttons to give user options to remove train info 
-var removeBtn = $("<button>");
-removeBtn.attr("data-train", trainName);
-removeBtn.addClass("deleteTrain");
-removeBtn.text("X");
-  
+  //creating the buttons to give user options to remove train info 
+  var removeBtn = $("<button>").attr("data-train", trainName).addClass("deleteTrain").text("X");
 
+  //display on HTML using jquery by creating rows 
+  var trainRow= $("<tr>").attr("id", "trainInfo").append(
+  $("<td>").text(trainName).prepend(removeBtn), 
+  $("<td>").text(destination),
+  $("<td>").text(frequency), 
+  $("<td>").text(arrivalData), 
+  $("<td>").text(minAway)
+  );
 
-//display on HTML using jquery by creating rows 
-var trainRow= $("<tr>").attr("id", "trainInfo").append(
-$("<td>").text(trainName).prepend(removeBtn), 
-$("<td>").text(destination),
-$("<td>").text(frequency), 
-$("<td>").text(arrivalData), 
-$("<td>").text(minAway)
-);
+  //append to table  of Current Train Schedule
+  $("#trainSchedule-table").append(trainRow);
 
-//append to table  of Current Train Schedule
-$("#trainSchedule-table").append(trainRow);
 },function(errorObject) {
   console.log("Errors handled: " + errorObject.code);
 });
@@ -122,14 +117,12 @@ $(document.body).unbind().on("click", ".deleteTrain", function() {
 
 //create slideshow for the train 
 var trainImg = ["images/blacktrain.jpg", "images/redBlackTrain.jpg", "images/redOrangeTrain.jpg", "images/whiteBlueTrain.jpg", "images/yellowTrain.jpg"];
-
 var showImg;
-
 var count=0;
 
 function displayingImg() {
-$("#picHolder").html("<img src=" + trainImg[count]+ " width= '500px' >");
-};
+  $("#picHolder").html("<img src=" + trainImg[count]+ " width= '500px' >");
+  };
 
 function nextImg() {
   count++;
@@ -137,18 +130,17 @@ function nextImg() {
 
   if(count === trainImg.length) {
     count=0;
-
     displayingImg();
   }
-}
+};
 
 function startPic() {
   showImg= setInterval(nextImg, 5000);
-}
+};
 
 function stopShowingPic() { //not using this as I want slideshow to keep going 
   clearInterval(showImg);
-}
+};
 
 //start slideshow of train pics
 displayingImg();
