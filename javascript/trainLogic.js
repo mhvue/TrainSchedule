@@ -78,8 +78,8 @@ console.log(tRemainder);
  console.log("min til train: " + minTilTrain);
 
 //calculate the arrival data
- var arrivalTime= moment().add(minTilTrain, "minutes");
- var arrivalData= moment(arrivalTime).format("hh:mm A");
+ var arrivalTime= moment().add(minTilTrain, "minutes"); //taking current time and adding freq to get when it'll arrive
+ var arrivalData= moment(arrivalTime).format("hh:mm A"); //changing format 
 console.log(arrivalTime);
 console.log(arrivalData);
 
@@ -97,20 +97,20 @@ removeBtn.text("X");
 
 //display on HTML using jquery by creating rows 
 var trainRow= $("<tr>").attr("id", "trainInfo").append(
-$("<td>").text(trainName).prepend(removeBtn), //commented this out due to unable to add remove button to work
+$("<td>").text(trainName).prepend(removeBtn), 
 $("<td>").text(destination),
 $("<td>").text(frequency), 
 $("<td>").text(arrivalData), 
 $("<td>").text(minAway)
 );
 
-//append to table  of Curren Train Schedule
+//append to table  of Current Train Schedule
 $("#trainSchedule-table").append(trainRow);
 },function(errorObject) {
   console.log("Errors handled: " + errorObject.code);
 });
 
-// Attempting to add remove btn...this is the  clicked function but unable to remove 
+// Attempting to add remove btn...
 $(document.body).unbind().on("click", ".deleteTrain", function() {
   console.log("click");
   var testingBtn = $(this).attr("data-train");
@@ -120,6 +120,40 @@ $(document.body).unbind().on("click", ".deleteTrain", function() {
 });
 
 
+//create slideshow for the train 
+var trainImg = ["images/blacktrain.jpg", "images/redBlackTrain.jpg", "images/redOrangeTrain.jpg", "images/whiteBlueTrain.jpg", "images/yellowTrain.jpg"];
+
+var showImg;
+
+var count=0;
+
+function displayingImg() {
+$("#picHolder").html("<img src=" + trainImg[count]+ " width= '500px' >");
+};
+
+function nextImg() {
+  count++;
+  setTimeout(displayingImg, 8000);
+
+  if(count === trainImg.length) {
+    count=0;
+
+    displayingImg();
+  }
+}
+
+function startPic() {
+  showImg= setInterval(nextImg, 5000);
+}
+
+function stopShowingPic() { //not using this as I want slideshow to keep going 
+  clearInterval(showImg);
+}
+
+//start slideshow of train pics
+displayingImg();
+nextImg();
+startPic();
 
 
-
+// and want it to coorelate with the train schedule eventually
